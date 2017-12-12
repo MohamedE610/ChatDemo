@@ -43,8 +43,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         createNotification(userName,"new user");
                     }
                 }else{
-                    String userId=map.get("user_id");
-                    if(userId.equals(currentUserid)) {
+                    String userId=map.get("receiver_id");
+                    if(userId!=null&&userId.equals(currentUserid)) {
                         String msgBody = map.get("message_body");
                         createNotification(msgBody,"new message");
                     }

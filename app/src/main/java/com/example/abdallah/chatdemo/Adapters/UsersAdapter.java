@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -17,6 +18,8 @@ import com.example.abdallah.chatdemo.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.MyViewHolder>  {
@@ -62,13 +65,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textView;
-        ImageView imageView;
+        CircleImageView imageView;
         CardView cardView;
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             textView=(TextView)itemView.findViewById(R.id.user_name_txt);
-            imageView=(ImageView) itemView.findViewById(R.id.user_img);
+            imageView=(CircleImageView) itemView.findViewById(R.id.user_img);
             cardView=(CardView) itemView.findViewById(R.id.card);
         }
 

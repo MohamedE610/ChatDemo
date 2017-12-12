@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyViewHolder>  {
     Conversation data;
@@ -65,7 +67,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 holder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             }
-            holder.cardView.setBackgroundColor(Color.BLUE);
+            holder.textCardView.setBackgroundColor(Color.BLUE);
         }else{
             String ss =data.getMessageList().get(position).getBody();
             holder.textView.setText(ss);
@@ -80,7 +82,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             params.addRule(RelativeLayout.ALIGN_START);
             params.setMargins(5,5,5,5);
             holder.cardView.setLayoutParams(params);*/
-            holder.cardView.setBackgroundColor(Color.GRAY);
+            holder.textCardView.setBackgroundColor(Color.GRAY);
 
 
         }
@@ -97,14 +99,16 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textView;
-        ImageView imageView;
-        CardView cardView;
+        CircleImageView imageView;
+        RelativeLayout cardView;
+        CardView textCardView;
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             textView=(TextView)itemView.findViewById(R.id.msg_body_txt);
-            imageView=(ImageView) itemView.findViewById(R.id.user_img);
-            cardView=(CardView) itemView.findViewById(R.id.card);
+            imageView=(CircleImageView) itemView.findViewById(R.id.user_img);
+            cardView=(RelativeLayout) itemView.findViewById(R.id.card);
+            textCardView=(CardView) itemView.findViewById(R.id.text_card);
         }
 
         @Override
