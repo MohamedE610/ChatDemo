@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="r">#c7c8c9</color>
     <color name="s">#0c70d3</color>
+    <color name="live_chat">#1b75bc</color>
+    <color name="chat_client">#527db0d3 </color>
+    <color name="chat_gms">#ffffff </color>
+    <color name="chat_background">#d1d3d4 </color>
+
 </resources>

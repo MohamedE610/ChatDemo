@@ -60,20 +60,22 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
         if(currentUser.getUserID().equals(data.getMessageList().get(position).getSender().getUserID())) {
             String ss = data.getMessageList().get(position).getBody();
             holder.textView.setText(ss);
-            holder.textView.setTextColor(Color.WHITE);
-            Picasso.with(context).load(currentUser.getProfileImg()).placeholder(R.drawable.facebook_circle)
-                    .error(R.drawable.facebook_circle).into(holder.imageView);
+            holder.textView.setTextColor(Color.BLACK);
+
+            Picasso.with(context).load(currentUser.getProfileImg()).placeholder(R.mipmap.ic_gms)
+                    .error(R.mipmap.ic_gms).into(holder.imageView);
             //setAnimation(holder.cardView, position);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 holder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             }
-            holder.textCardView.setBackgroundColor(Color.BLUE);
+            //chat_gms 0xffffff
+            holder.textCardView.setBackgroundColor(Color.WHITE);
         }else{
             String ss =data.getMessageList().get(position).getBody();
             holder.textView.setText(ss);
             holder.textView.setTextColor(Color.BLACK);
-            Picasso.with(context).load(data.getMessageList().get(position).getSender().getProfileImg()).placeholder(R.drawable.facebook_circle)
-                    .error(R.drawable.facebook_circle).into(holder.imageView);
+            Picasso.with(context).load(data.getMessageList().get(position).getSender().getProfileImg()).placeholder(R.mipmap.ic_gms)
+                    .error(R.mipmap.ic_gms).into(holder.imageView);
             //setAnimation(holder.cardView, position);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 holder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
@@ -82,7 +84,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             params.addRule(RelativeLayout.ALIGN_START);
             params.setMargins(5,5,5,5);
             holder.cardView.setLayoutParams(params);*/
-            holder.textCardView.setBackgroundColor(Color.GRAY);
+            //chat_client 0xffffff
+            holder.textCardView.setBackgroundColor(0x527db0d3);
 
 
         }

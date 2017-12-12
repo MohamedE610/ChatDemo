@@ -12,7 +12,8 @@
     android:foreground="?selectableItemBackground"
     android:layoutDirection="rtl"
     android:layout_gravity="end"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    >
         <!--suppress AndroidLintContentDescription -->
     <LinearLayout
         android:layout_width="wrap_content"

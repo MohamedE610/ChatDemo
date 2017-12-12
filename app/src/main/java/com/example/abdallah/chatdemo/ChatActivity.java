@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.abdallah.chatdemo.Adapters.MessagesAdapter;
 import com.example.abdallah.chatdemo.Models.Conversation;
@@ -35,7 +36,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
 
     final String con="Conversations";
     String userType="";
-    Button button;
+    ImageView button;
     EditText editText;
     User currentUser;
     User user;
@@ -63,12 +64,12 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         MySharedPreferences.setUpMySharedPreferences(this,Constants.constKey);
 
-        button = (Button) findViewById(R.id.btn);
+        button = (ImageView) findViewById(R.id.btn);
         editText = (EditText) findViewById(R.id.e_txt);
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

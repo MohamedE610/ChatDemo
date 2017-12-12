@@ -40,13 +40,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if(type.equals("users")) {
                     if (currentUserid != null && currentUserid.equals("admin")) {
                         String userName=map.get("user_name");
-                        createNotification(userName,"new user");
+                        String imgUrl=map.get("imgUrl");
+                        createNotification(userName,"new user",imgUrl);
                     }
                 }else{
                     String userId=map.get("receiver_id");
                     if(userId!=null&&userId.equals(currentUserid)) {
                         String msgBody = map.get("message_body");
-                        createNotification(msgBody,"new message");
+                        String sender_name=map.get("sender_name");
+                        createNotification(msgBody,sender_name,"new message");
                     }
 
                 }
@@ -57,7 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 
-    private void createNotification( String messageBody ,String contentTitle ) {
+    private void createNotification( String messageBody ,String contentTitle , String extra ) {
         Intent intent = new Intent( this , MainActivity.class );
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent resultIntent = PendingIntent.getActivity( this , 0, intent,
@@ -66,7 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder( this)
-                .setSmallIcon(R.drawable.facebook_circle)
+                .setSmallIcon(R.mipmap.ic_gms)
                 .setContentTitle(contentTitle)
                 .setContentText(messageBody)
                 .setAutoCancel( true )
