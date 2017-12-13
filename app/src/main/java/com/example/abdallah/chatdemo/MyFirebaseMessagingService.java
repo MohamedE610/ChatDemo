@@ -26,6 +26,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //Toast.makeText(this,"FirebaseMessaging ^_^",Toast.LENGTH_SHORT).show();
         // Check if message contains a data payload.
 
+        MySharedPreferences.setUpMySharedPreferences(this,Constants.constKey);
+
 
             Map<String, String> map = null;
             if (remoteMessage != null)
@@ -48,6 +50,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     if(userId!=null&&userId.equals(currentUserid)) {
                         String msgBody = map.get("message_body");
                         String sender_name=map.get("sender_name");
+                        String sender_id=map.get("sender_id");
+                        MySharedPreferences.setUserSetting(Constants.unreadMessages+sender_id,"1");
                         createNotification(msgBody,sender_name,"new message");
                     }
 

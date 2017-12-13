@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.abdallah.chatdemo.Adapters.MessagesAdapter;
 import com.example.abdallah.chatdemo.Models.Conversation;
@@ -33,7 +34,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
 
     private RecyclerView recyclerView;
     private MessagesAdapter  messagesAdapter;
-
+    ProgressBar progressBar;
 
     final String con="Conversations";
     String userType="";
@@ -69,6 +70,8 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
         //setSupportActionBar(toolbar);
 
         MySharedPreferences.setUpMySharedPreferences(this,Constants.constKey);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         button = (FloatingActionButton) findViewById(R.id.btn);
         editText = (EditText) findViewById(R.id.e_txt);
@@ -89,7 +92,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
                 User sender = currentUser;
                 User receiver = user;
                 if (!TextUtils.isEmpty(editText.getText())) {
-                    msgBody = editText.getText().toString();
+                    msgBody = editText.getText().toString().trim();
 
                     if (userType.equals("u"))
                         firebaseDatabasUtils.sendMessageToAdmin(msgBody, receiver, sender);
@@ -124,10 +127,14 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
             user= new User(bundle.getString("id"), bundle.getString("name"),bundle.getString("img"));
             //sender
             currentUser=new User("admin","admin","admin");
+            if(user!=null&&user.getUserID()!=null) {
+                MySharedPreferences.setUserSetting(Constants.unreadMessages+user.getUserID(),"0");
+            }
         }
 
-        MySharedPreferences.setUpMySharedPreferences(this, Constants.constKey);
+
         MySharedPreferences.setUserSetting(Constants.currentUserId,currentUser.getUserID());
+
 
         //startSpecialChatService(userType,user,currentUser);
 
@@ -220,6 +227,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
     public void OnSuccess(Object object) {
 
         try {
+            progressBar.setVisibility(View.INVISIBLE);
             Conversation conversation = (Conversation) object;
             //MySharedPreferences.setUserSetting(Constants.messagesNumbers,conversation.getMessageList().size()+"");
             messagesAdapter = new MessagesAdapter(currentUser, conversation, ChatActivity.this);
@@ -232,6 +240,6 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
 
     @Override
     public void OnFailure(String errorMsg) {
-
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

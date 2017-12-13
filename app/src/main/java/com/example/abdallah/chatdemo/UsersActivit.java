@@ -87,6 +87,19 @@ public class UsersActivit extends AppCompatActivity implements  UsersAdapter.Rec
     }
 
 
+    @Override
+    protected void onResume() {
+
+        if(userList!=null&& userList.size()>0) {
+            usersAdapter = new UsersAdapter(userList, this);
+            recyclerView = (RecyclerView) findViewById(R.id.recycler);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+            usersAdapter.setClickListener(this);
+            recyclerView.setAdapter(usersAdapter);
+        }
+        super.onResume();
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public void OnSuccess(Object object) {
@@ -101,6 +114,7 @@ public class UsersActivit extends AppCompatActivity implements  UsersAdapter.Rec
             usersAdapter.setClickListener(this);
             recyclerView.setAdapter(usersAdapter);
         }catch (Exception e){}
+
     }
 
     @Override

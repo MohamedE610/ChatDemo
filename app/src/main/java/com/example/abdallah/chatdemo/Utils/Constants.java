@@ -13,6 +13,8 @@ public class Constants {
     public static final String bundle="bundle";
     public static final String messagesAction="messagesAction";
     public static final String messagesNumbers="messagesNumbers";
+    public static final String unreadMessages="unreadMessages";
+
 
 
 

@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.abdallah.chatdemo.Models.User;
 import com.example.abdallah.chatdemo.R;
+import com.example.abdallah.chatdemo.Utils.Constants;
+import com.example.abdallah.chatdemo.Utils.MySharedPreferences;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,6 +49,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
+        String flag= MySharedPreferences.getUserSetting(Constants.unreadMessages+data.get(position).getUserID());
+        if (flag != null && flag.equals("1")) {
+            holder.relativeLayout.setVisibility(View.VISIBLE);
+        }else{
+            holder.relativeLayout.setVisibility(View.INVISIBLE);
+        }
+
         String ss=data.get(position).getName();
         holder.textView.setText(ss);
         Picasso.with(context).load(data.get(position).getProfileImg()).placeholder(R.drawable.facebook_circle)
@@ -67,12 +76,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.MyViewHolder
         TextView textView;
         CircleImageView imageView;
         CardView cardView;
+        RelativeLayout relativeLayout;
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             textView=(TextView)itemView.findViewById(R.id.user_name_txt);
             imageView=(CircleImageView) itemView.findViewById(R.id.user_img);
             cardView=(CardView) itemView.findViewById(R.id.card);
+            relativeLayout=(RelativeLayout)itemView.findViewById(R.id.msg_num_view);
         }
 
         @Override

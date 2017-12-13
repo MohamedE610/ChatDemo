@@ -8,6 +8,7 @@
     tools:context="com.example.abdallah.chatdemo.UsersActivit"
     tools:showIn="@layout/activity_users"
     >
+<!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,14 +16,17 @@
         android:id="@+id/txt_users"
         android:textSize="35dp"
         android:gravity="center"
+        android:background="@color/live_chat"
+        android:textColor="@android:color/white"
         />
+-->
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler"
-        android:layout_below="@id/txt_users"
         >
+        <!-- android:layout_below="@id/txt_users" -->
     </android.support.v7.widget.RecyclerView>
 
     <ProgressBar
