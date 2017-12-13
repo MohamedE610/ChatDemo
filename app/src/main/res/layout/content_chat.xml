@@ -8,12 +8,12 @@
     tools:context="com.example.abdallah.chatdemo.ChatActivity"
     tools:showIn="@layout/activity_chat"
     android:orientation="vertical"
-    android:background="@color/chat_background">
+    android:background="#FFFFFF">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="40dp">
+        android:layout_above="@+id/linear1">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -27,24 +27,64 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_alignParentBottom="true"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/linear1"
+    android:layout_marginBottom="5dp"
+    >
    <EditText
     android:layout_height="50dp"
-    android:inputType="text"
     android:layout_width="0dp"
     android:layout_weight="0.85"
     android:id="@+id/e_txt"
-    android:background="@color/chat_gms"
+    android:background="@drawable/rounded_edittext"
        android:layout_gravity="bottom"
+       android:layout_marginEnd="5dp"
+       android:layout_marginRight="5dp"
+       android:padding="5dp"
+       android:hint="Type a message"
+       android:scrollbars="vertical"
+       android:inputType="textMultiLine|text"
     />
-    <ImageView
+    <android.support.design.widget.FloatingActionButton
         android:layout_height="50dp"
         android:layout_width="0dp"
         android:layout_weight="0.15"
         android:id="@+id/btn"
         android:src="@drawable/send_icon_chat"
-        android:layout_gravity="end"
+        app:backgroundTint="@android:color/holo_orange_light"
+        android:layout_gravity="end|bottom"
         />
 </LinearLayout>
+    <!--<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:id="@+id/linear1">
+        <EditText
+            android:layout_height="50dp"
+            android:inputType="textMultiLine|text"
+            android:layout_width="match_parent"
+            android:layout_weight="0.85"
+            android:id="@+id/e_txt"
+            android:background="@color/chat_gms"
+            android:layout_gravity="bottom"
+            android:scrollbars="vertical"
+            android:paddingEnd="60dp"
+            android:paddingRight="60dp"
+            android:hint="Type a message"
+            />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_weight="0.15"
+            android:id="@+id/btn"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/send_icon_chat"
+            app:backgroundTint="fff"
+            android:layout_gravity="end"
+            />
+    </FrameLayout>-->
 
 </RelativeLayout>

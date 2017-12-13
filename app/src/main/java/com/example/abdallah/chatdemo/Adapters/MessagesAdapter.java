@@ -62,20 +62,31 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             holder.textView.setText(ss);
             holder.textView.setTextColor(Color.BLACK);
 
-            Picasso.with(context).load(currentUser.getProfileImg()).placeholder(R.mipmap.ic_gms)
-                    .error(R.mipmap.ic_gms).into(holder.imageView);
+            if(currentUser.getUserID().equals("admin"))
+                Picasso.with(context).load(R.drawable.gms_icon).placeholder(R.drawable.gms_icon)
+                        .error(R.drawable.gms_icon).into(holder.imageView);
+            else
+                Picasso.with(context).load(currentUser.getProfileImg()).placeholder(R.drawable.facebook_circle)
+                     .error(R.drawable.facebook_circle).into(holder.imageView);
             //setAnimation(holder.cardView, position);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 holder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             }
             //chat_gms 0xffffff
-            holder.textCardView.setBackgroundColor(Color.WHITE);
+                holder.textCardView.setBackgroundResource(R.drawable.card_send);
+
         }else{
             String ss =data.getMessageList().get(position).getBody();
             holder.textView.setText(ss);
             holder.textView.setTextColor(Color.BLACK);
-            Picasso.with(context).load(data.getMessageList().get(position).getSender().getProfileImg()).placeholder(R.mipmap.ic_gms)
-                    .error(R.mipmap.ic_gms).into(holder.imageView);
+
+
+            if(data.getMessageList().get(position).getSender().getUserID().equals("admin"))
+                Picasso.with(context).load(R.drawable.gms_icon).placeholder(R.drawable.gms_icon)
+                        .error(R.drawable.gms_icon).into(holder.imageView);
+            else
+                Picasso.with(context).load(data.getMessageList().get(position).getSender().getProfileImg()).placeholder(R.drawable.facebook_circle)
+                        .error(R.drawable.facebook_circle).into(holder.imageView);
             //setAnimation(holder.cardView, position);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 holder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
@@ -85,8 +96,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
             params.setMargins(5,5,5,5);
             holder.cardView.setLayoutParams(params);*/
             //chat_client 0xffffff
-            holder.textCardView.setBackgroundColor(0x527db0d3);
-
+            //holder.textCardView.setBackgroundColor(0x527db0d3);
+                holder.textCardView.setBackgroundResource(R.drawable.card_receive);
 
         }
 

@@ -2,6 +2,7 @@ package com.example.abdallah.chatdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +37,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
 
     final String con="Conversations";
     String userType="";
-    ImageView button;
+    FloatingActionButton button;
     EditText editText;
     User currentUser;
     User user;
@@ -69,7 +70,7 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
 
         MySharedPreferences.setUpMySharedPreferences(this,Constants.constKey);
 
-        button = (ImageView) findViewById(R.id.btn);
+        button = (FloatingActionButton) findViewById(R.id.btn);
         editText = (EditText) findViewById(R.id.e_txt);
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
