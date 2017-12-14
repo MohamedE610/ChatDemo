@@ -37,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/send_icon_chat"
-        app:backgroundTint="@android:color/white"
+        android:src="@drawable/icon_chat003"
         />
 </android.support.design.widget.CoordinatorLayout>

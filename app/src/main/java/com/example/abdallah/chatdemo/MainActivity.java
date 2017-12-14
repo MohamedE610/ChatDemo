@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.abdallah.chatdemo.Utils.Constants;
+import com.example.abdallah.chatdemo.Utils.CustomDialog;
 import com.example.abdallah.chatdemo.Utils.FacebookLogin;
 import com.example.abdallah.chatdemo.Utils.MySharedPreferences;
 import com.facebook.login.LoginManager;
@@ -49,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String currentUserId="";
+
+    @Override
+    public void onBackPressed() {
+        CustomDialog customDialog=new CustomDialog(this);
+        customDialog.show();
+       //super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
