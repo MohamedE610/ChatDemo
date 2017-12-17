@@ -4,12 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -64,6 +68,10 @@ public class CustomDialog extends Dialog implements
         yes.setOnClickListener(this);
         no.setOnClickListener(this);*/
 
+        /**************** make background transparent *********************/
+        //make background transparent
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         facebookImage = findViewById(R.id.facebook_img);
         facebookImage.setOnClickListener(this);
         //facebookImage.setOnTouchListener(this);
@@ -99,40 +107,63 @@ public class CustomDialog extends Dialog implements
 
     }
 
+    View view;
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.facebook_img:
-                openFacebook(facebookPageID);
-                dismiss();
-                break;
-            case R.id.youtube_img:
-                openYoutube(youtubeChannel);
-                dismiss();
-                break;
-            case R.id.google_img:
-                openGmail(gmailStr);
-                dismiss();
-                break;
-            case R.id.phone_img:
-                phoneCall(phoneNumber);
-                dismiss();
-                break;
-            case R.id.mail_img:
-                openEmail(emailStr);
-                dismiss();
-                break;
-            case R.id.map_img:
-                openMapLocation(locationStr);
-                dismiss();
-                break;
-            case R.id.website_img:
-                openWebsite(websiteStr);
-                dismiss();
-                break;
-            default:
-                break;
-        }
+view=v;
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+// Add the buttons
+        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+
+                switch (view.getId()) {
+                    case R.id.facebook_img:
+                        openFacebook(facebookPageID);
+                        dismiss();
+                        break;
+                    case R.id.youtube_img:
+                        openYoutube(youtubeChannel);
+                        dismiss();
+                        break;
+                    case R.id.google_img:
+                        openGmail(gmailStr);
+                        dismiss();
+                        break;
+                    case R.id.phone_img:
+                        phoneCall(phoneNumber);
+                        dismiss();
+                        break;
+                    case R.id.mail_img:
+                        openEmail(emailStr);
+                        dismiss();
+                        break;
+                    case R.id.map_img:
+                        openMapLocation(locationStr);
+                        dismiss();
+                        break;
+                    case R.id.website_img:
+                        openWebsite(websiteStr);
+                        dismiss();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+// Set other dialog properties
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage("Do you want continue")
+                .setTitle("Confirm");
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
         dismiss();
     }
 
@@ -238,6 +269,7 @@ public class CustomDialog extends Dialog implements
         }
         return false;
     }
+
 
     private void zoomOut(View view){
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(100, 100);
