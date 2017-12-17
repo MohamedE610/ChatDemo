@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         CustomDialog customDialog=new CustomDialog(this);
         customDialog.show();
+
        //super.onBackPressed();
     }
 
