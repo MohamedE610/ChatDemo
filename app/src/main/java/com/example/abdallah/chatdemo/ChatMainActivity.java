@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.abdallah.chatdemo.Utils.Constants;
 import com.example.abdallah.chatdemo.Utils.CustomDialog;
@@ -26,7 +25,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+public class ChatMainActivity extends AppCompatActivity {
 
     FacebookLogin facebookLogin;
 
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 /*userType="a";
-                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                Intent intent = new Intent(ChatMainActivity.this, ChatActivity.class);
                 Bundle bundle = new Bundle();
                 String name="admin";
                 bundle.putString("name",name);
@@ -102,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("img", "admin");
                 bundle.putString("userType",userType);
                 intent.putExtra("userData", bundle);
-                Toast.makeText(MainActivity.this,"welcome "+name,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatMainActivity.this,"welcome "+name,Toast.LENGTH_SHORT).show();
                 startActivity(intent);*/
 
-                Intent intent=new Intent(MainActivity.this,UsersActivit.class);
+                Intent intent=new Intent(ChatMainActivity.this,UsersActivit.class);
                 startActivity(intent);
             }
         });
