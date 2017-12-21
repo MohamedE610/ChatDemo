@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.abdallah.chatdemo.MapsActivity;
 import com.example.abdallah.chatdemo.R;
 
 /**
@@ -227,10 +228,19 @@ view=v;
         c.startActivity(mapIntent);*/
 
         // Creates an Intent that will load a map of San Francisco
-        Uri gmmIntentUri = Uri.parse("geo:29.9602707,30.9164993");
+        /*Uri gmmIntentUri = Uri.parse("geo:29.9602707,30.9164993");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        c.startActivity(mapIntent);
+        c.startActivity(mapIntent);*/
+
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com.eg/maps/place/GMS+Group/@29.9602707,30.9164993,17z/data=!3m1!4b1!4m5!3m4!1s0x14585612acea8d71:0xb03efb016a419bb4!8m2!3d29.9602707!4d30.918688"));
+        intent.setPackage("com.google.android.apps.maps");
+        c.startActivity(intent);
+
+       /* Intent mapIntent = new Intent(c.getApplicationContext() , MapsActivity.class);
+        c.startActivity(mapIntent);*/
+
     }
 
     private void openEmail(String data){

@@ -113,7 +113,7 @@ public class ChatMainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            facebookLogin.registerCallbackManager(requestCode, resultCode, data);
+        facebookLogin.registerCallbackManager(requestCode, resultCode, data);
     }
 
     @Override
