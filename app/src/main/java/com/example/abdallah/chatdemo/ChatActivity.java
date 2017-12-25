@@ -235,7 +235,9 @@ public class ChatActivity extends AppCompatActivity implements Callbacks {
             recyclerView.setLayoutManager(new GridLayoutManager(ChatActivity.this, 1));
             recyclerView.setAdapter(messagesAdapter);
             recyclerView.scrollToPosition(conversation.getMessageList().size() - 1);
-        }catch (Exception e){}
+        }catch (Exception e){
+
+        }
     }
 
     @Override

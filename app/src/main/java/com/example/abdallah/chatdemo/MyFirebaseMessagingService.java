@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.example.abdallah.chatdemo.Utils.Constants;
@@ -29,33 +30,45 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         MySharedPreferences.setUpMySharedPreferences(this,Constants.constKey);
 
 
-            Map<String, String> map = null;
-            if (remoteMessage != null)
-                map = remoteMessage.getData();
-            if (map != null && map.size() > 0) {
+        Map<String, String> map = null;
+        if (remoteMessage != null)
+            map = remoteMessage.getData();
+        if (map != null && map.size() > 0) {
            /* Collection<String>strings=map.values();
             String[]strs=null;
             strings.toArray(strs);*/
-                String type=map.get("type");
-                MySharedPreferences.setUpMySharedPreferences(this, Constants.constKey);
-                String currentUserid = MySharedPreferences.getUserSetting(Constants.currentUserId);
-                if(type.equals("users")) {
-                    if (currentUserid != null && currentUserid.equals("admin")) {
-                        String userName=map.get("user_name");
-                        String imgUrl=map.get("imgUrl");
-                        createNotification(userName,"new user",imgUrl);
-                    }
-                }else{
-                    String userId=map.get("receiver_id");
-                    if(userId!=null&&userId.equals(currentUserid)) {
-                        String msgBody = map.get("message_body");
-                        String sender_name=map.get("sender_name");
-                        String sender_id=map.get("sender_id");
-                        MySharedPreferences.setUserSetting(Constants.unreadMessages+sender_id,"1");
-                        createNotification(msgBody,sender_name,"new message");
-                    }
-
+            String type=map.get("type");
+            MySharedPreferences.setUpMySharedPreferences(this, Constants.constKey);
+            String currentUserid = MySharedPreferences.getUserSetting(Constants.currentUserId);
+            if(type.equals("users")) {
+                if (currentUserid != null && currentUserid.equals("admin")) {
+                    String userName=map.get("user_name");
+                    String imgUrl=map.get("imgUrl");
+                    createNotification(userName,"new user",imgUrl,"","","","");
                 }
+            }else{
+                String userId=map.get("receiver_id");
+                String userName=map.get("receiver_name");
+                String userImg=map.get("receiver_imgUrl");
+                if(userId!=null&&userId.equals(currentUserid)) {
+                    String msgBody = map.get("message_body");
+                    String sender_name=map.get("sender_name");
+                    String sender_id=map.get("sender_id");
+                    String sender_img=map.get("sender_imgUrl");
+                    MySharedPreferences.setUserSetting(Constants.unreadMessages+sender_id,"1");
+                    String userType="";
+                    if(userId.equals("admin")) {
+                        userType = "a";
+                        createNotification(msgBody,sender_name,sender_img,sender_name,sender_id,sender_img,userType);
+                    }else {
+                        userType = "u";
+                        createNotification(msgBody,sender_name,sender_img,userName,userId,userImg,userType);
+                    }
+                    //createNotification(msgBody,sender_name,sender_img,userName,userId,userImg,userType);
+                    //createNotification(msgBody,sender_name,sender_img,sender_name,sender_id,sender_img,userType);
+                }
+
+            }
         }
         super.onMessageReceived(remoteMessage);
 
@@ -63,8 +76,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 
-    private void createNotification( String messageBody ,String contentTitle , String extra ) {
-        Intent intent = new Intent( this , ChatMainActivity.class );
+    private void createNotification( String messageBody ,String contentTitle , String extra ,String name ,String id, String img ,String type ) {
+        Intent intent = new Intent( this , ChatActivity.class );
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        bundle.putString("id", id);
+        bundle.putString("img", img);
+        bundle.putString("userType", type);
+        intent.putExtra("userData", bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent resultIntent = PendingIntent.getActivity( this , 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
